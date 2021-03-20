@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 import json
 from django.http import JsonResponse
 from validate_email import validate_email
+from django.contrib import messages
 
 
 
@@ -12,6 +13,19 @@ from validate_email import validate_email
 
 class RegisterationView(View):
     def get(self, request):
+        return render(request,'authentication/register.html')
+
+    def post(self, request):
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        # GET user data
+        #Validate
+        # Create User Account
+        # messages.success(request,'Success Whats Up')
+        # messages.warning(request,'Success Whats Up war')
+        # messages.info(request,'Success Whats Up info')
+        # messages.error(request,'Success Whats Up error')
         return render(request,'authentication/register.html')
 
 
