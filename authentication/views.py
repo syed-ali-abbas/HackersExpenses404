@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.models import User
 import json
 from django.http import JsonResponse
 from validate_email import validate_email
 from django.contrib import messages
-
-
+from django.core.mail import EmailMessage
+from django.contrib import auth
 
 
 
@@ -19,14 +19,55 @@ class RegisterationView(View):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        # GET user data
-        #Validate
-        # Create User Account
-        # messages.success(request,'Success Whats Up')
-        # messages.warning(request,'Success Whats Up war')
-        # messages.info(request,'Success Whats Up info')
-        # messages.error(request,'Success Whats Up error')
+        print(username,email,password)
+        context = {
+            'fieldValues':request.POST
+        }
+        if not User.objects.filter(username=username).exists():
+            if not User.objects.filter(email=email).exists():
+                if len(password)<6:
+                    messages.error(request,'Password Length should be greater than 6 characters')
+                    return render(request,'authentication/register.html',context)
+                user=User.objects.create_user(username=username,email=email)
+                user.set_password(password)
+                user.save()
+                messages.success(request,'Account Created Successfully')
+                return redirect('login-view')
         return render(request,'authentication/register.html')
+
+
+class LoginView(View):
+    def get(self,request):
+        return render(request,'authentication/login.html')
+
+    def post(self,request):
+        username = request.POST['username']
+        password = request.POST['password']
+
+        if username and password:
+            user = auth.authenticate(username=username,password=password)
+            if user:
+                # if auth.is_active():
+                auth.login(request,user)
+                messages.success(request,"Success")
+                return redirect('add-expense')
+
+                
+                # messages.error(request,"Error not active user found")
+                # return render(request,'authentication/login.html')
+
+            messages.error(request,"Invalid Credentials")
+            return render(request,'authentication/login.html')
+
+        messages.error(request,"Please Fill all fields")
+        return render(request,'authentication/login.html')
+        
+
+class SignOut(View):
+    def post(self, request):
+        auth.logout(request)
+        messages.success(request,"Loged Out Successfully")
+        return redirect('login-view')
 
 
 

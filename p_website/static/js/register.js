@@ -14,39 +14,35 @@ const handleToggleInput=(e)=>{
 if(showPasswordToggle.textContent==="SHOW"){
     showPasswordToggle.textContent="HIDE";
     passwordField.setAttribute('type','password');
-}
-else{
+}else{
     showPasswordToggle.textContent="SHOW";
-    passwordField.setAttribute('type','show');
-}
-}
+    passwordField.setAttribute('type','show');}}
 showPasswordToggle.addEventListener("click",handleToggleInput);
 
 // -------------------------Username Validation--------------------------------------
+
 usernameField.addEventListener("keyup",(e)=>{
 const usernameVal = e.target.value;
 userNameSuccessOutput.style.display="block";
 userNameSuccessOutput.style.display='none';
 usernameField.classList.remove("is-invalid");
+// submitBtn.disabled=false;
 feedBackArea.style.display="none";
 if(usernameVal.length>0){
 fetch("/authentication/validate-username",{
-body:JSON.stringify({username:usernameVal}),method:"POST",
-})
+body:JSON.stringify({username:usernameVal}),method:"POST",})
 .then((res)=>res.json())
 .then((data)=>{
     console.log(data);
     
     userNameSuccessOutput.textContent=`Checking ${usernameVal}`;
     if(data.username_error){
-        submitBtn.disabled=true;
+        submitBtn.setAttribute("disabled","disabled");
         usernameField.classList.add("is-invalid");
         feedBackArea.style.display="block";
         feedBackArea.innerHTML=`<p>${data.username_error}</p>`;
     }
-    else{
-        submitBtn.setAttribute("disabled");
-    }
+    else{submitBtn.removeAttribute("disabled");}
 });
 }
 });
@@ -57,6 +53,7 @@ emailField.addEventListener("keyup",(e)=>{
     emailSuccessOutput.style.display="block";
     emailField.classList.remove("is-invalid");
     emailfeedBackArea.style.display="none";
+    // submitBtn.disabled=false;
     if(emailVal.length>0){
 
         fetch("/authentication/validate-email",{
@@ -67,15 +64,9 @@ emailField.addEventListener("keyup",(e)=>{
         console.log(data);
         emailSuccessOutput.textContent=`Checking ${emailVal}`;
             if(data.email_error){
-                // submitBtn.setAttribute("disabled","disabled");
-                submitBtn.disabled=true;
+                submitBtn.setAttribute("disabled","disabled");
+                // submitBtn.disabled=true;
                 emailField.classList.add("is-invalid");
                 emailfeedBackArea.style.display="block";
                 emailfeedBackArea.innerHTML=`<p>${data.email_error}</p>`;
-    }
-    else{
-        submitBtn.setAttribute("disabled");
-    }
-    });
-    }
-    });
+    }else{submitBtn.removeAttribute("disabled");}});}});
