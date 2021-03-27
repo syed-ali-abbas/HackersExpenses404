@@ -50,7 +50,7 @@ class LoginView(View):
                 # if auth.is_active():
                 auth.login(request,user)
                 messages.success(request,"Success")
-                return redirect('add-expense')
+                return redirect('expenses')
 
                 
                 # messages.error(request,"Error not active user found")

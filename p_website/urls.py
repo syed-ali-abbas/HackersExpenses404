@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('p_webapp.urls')),
     path('authentication/',include('authentication.urls')),
+    path('userprefences/',include('userprefences.urls')),
 ]
