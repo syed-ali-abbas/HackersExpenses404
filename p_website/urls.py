@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('p_webapp.urls')),
     path('authentication/',include('authentication.urls')),
     path('userprefences/',include('userprefences.urls')),
+    path('income/',include('userincome.urls')),
 ]

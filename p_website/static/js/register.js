@@ -30,7 +30,8 @@ usernameField.classList.remove("is-invalid");
 feedBackArea.style.display="none";
 if(usernameVal.length>0){
 fetch("/authentication/validate-username",{
-body:JSON.stringify({username:usernameVal}),method:"POST",})
+body:JSON.stringify({username:usernameVal}),method:"POST",
+})
 .then((res)=>res.json())
 .then((data)=>{
     console.log(data);
@@ -46,6 +47,7 @@ body:JSON.stringify({username:usernameVal}),method:"POST",})
 });
 }
 });
+
 // ------------------------------Email Validation---------------------------------------------
 emailField.addEventListener("keyup",(e)=>{
     const emailVal = e.target.value;
@@ -65,8 +67,14 @@ emailField.addEventListener("keyup",(e)=>{
         emailSuccessOutput.textContent=`Checking ${emailVal}`;
             if(data.email_error){
                 submitBtn.setAttribute("disabled","disabled");
-                // submitBtn.disabled=true;
                 emailField.classList.add("is-invalid");
                 emailfeedBackArea.style.display="block";
                 emailfeedBackArea.innerHTML=`<p>${data.email_error}</p>`;
-    }else{submitBtn.removeAttribute("disabled");}});}});
+    }
+    else
+    {
+        submitBtn.removeAttribute("disabled");
+        
+}});
+
+}});

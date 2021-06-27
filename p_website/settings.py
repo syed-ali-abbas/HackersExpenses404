@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'userprefences.apps.UserprefencesConfig',
     'authentication.apps.AuthenticationConfig',
+    'userincome.apps.UserincomeConfig',
     'p_webapp.apps.PWebappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,9 +137,10 @@ messages.ERROR:'danger'
 }
 
 # email stuff
-# EMAIL_HOST = os.environ.get('EMAIL_HOST')
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_PORT = 587
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_SSL = True    # use port 465
+EMAIL_USE_TLS = False    # use port 587
+EMAIL_PORT = 465 # OR 587
+EMAIL_HOST_USER =  "syedaliabbasshahmajeed@gmail.com"
+EMAIL_HOST_PASSWORD ="majeed@718" 

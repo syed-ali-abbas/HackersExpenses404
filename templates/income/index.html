@@ -1,9 +1,9 @@
 
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}
-        Expenses
+        Income 
         {% endblock title %}
+{% load static %}
 {% block content %}
   
   <div class="container mt-4">
@@ -13,13 +13,13 @@
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Expenses</a></li>
-      <li class="breadcrumb-item active" aria-current="page">My Expenses</li>
+      <li class="breadcrumb-item"><a href="#">Income</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Income</li>
     </ol>
   </nav>
 </div>
 <div class="col-md-2">
-  <a href="{% url 'add-expense' %}" class="btn btn-primary">Add Expense</a>
+  <a href="{% url 'add-income' %}" class="btn btn-primary">Add Income</a>
 </div>
 </div>
 </div>
@@ -29,8 +29,6 @@
 <div class="row">
   <div class="col-md-8"></div>
   <div class="col-md-4">
-    <a href="{% url 'export-excel' %}" class="btn btn-primary">Export EXCEL</a>
-    <a href="{% url 'export-csv' %}" class="btn btn-secondary">Export CSV</a>
     <div class="form-group">
      <input type="text" class="form-control" placeholder="Search" id="searchField">
     </div>
@@ -41,19 +39,19 @@
 
 
   {% include 'messages.html' %}
-  {% if expenses.count %}
+  {% if income.count %}
   <div class="app-table">
     <table class="table table-stripped table-hover">
       <thead>
         <tr>
-          <th>Amount ({{currency}})</th><th>Category</th><th>Description</th><th>Date</th>
+          <th>Amount ({{currency}})</th><th>Source</th><th>Description</th><th>Date</th>
         </tr>
       </thead>
       <tbody>
-        {% for expense in page_obj %}
+        {% for income in page_obj %}
         <tr>
-          <td>{{expense.amount}}</td><td>{{expense.category}}</td><td>{{expense.descripption}}</td><td>{{expense.date}}</td>
-          <td><a href="{% url 'expense_edit' expense.pk %}" class="btn btn-secondary btn-sm">Edit</a></td>
+          <td>{{income.amount}}</td><td>{{income.source}}</td><td>{{income.descripption}}</td><td>{{income.date}}</td>
+          <td><a href="{% url 'income_edit' income.pk %}" class="btn btn-secondary btn-sm">Edit</a></td>
         </tr>
         {% endfor %}
       </tbody>
@@ -63,7 +61,7 @@
     <table class="table table-stripped table-hover">
       <thead>
         <tr>
-          <th>Amount ({{currency}})</th><th>Category</th><th>Description</th><th>Date</th>
+          <th>Amount ({{currency}})</th><th>Source</th><th>Description</th><th>Date</th>
         </tr>
       </thead>
       <tbody class="table-body">
@@ -97,7 +95,7 @@
   
 </div>
 
-<script src="{% static 'js/searchExpenses.js' %}">
+<script src="{% static 'js/searchIncome.js' %}">
 
 </script>
 

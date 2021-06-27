@@ -10,3 +10,5 @@ class UserPreference(models.Model):
     def __str__(self):
         return str(user)+'s'+'preferences'
 
+    
+

@@ -1,0 +1,63 @@
+#header {
+    background: rgb(0,62,69);
+    color: whitesmoke;
+}
+
+#branding h1 {
+    color: whitesmoke;
+}
+
+.login .submit-row {
+    padding: 0px !important;
+    
+}
+
+
+.module h2, .module caption, .inline-group h2 {
+    background: rgb(9, 139, 153);
+    color: #fff;
+}
+
+#content-related .module h2 {
+    background: rgb(9, 139, 153);
+    color: #fff;
+}
+
+#content-related .module {
+    border: 2px solid rgb(9, 139, 153);;
+}
+
+.dashboard #content {
+    width: 75%;
+}
+
+#toolbar form input[type="submit"] {
+     width: 15% !important;
+     background: rgb(9, 139, 153) !important;
+     color: whitesmoke !important;
+}
+
+div.breadcrumbs {
+    background: rgb(94, 122, 126);
+    color: #c4dce8;
+}
+/* ----------------------------------- */
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    width: 20%;
+    float: left;
+    background: #417690;
+    
+}
+
+.submit-row input {
+    width: 35%;
+    line-height: 15px;
+    margin: 0;
+    
+}
+
+input[type=submit], input[type=button]{
+    background: rgb(9, 139, 153);
+    width: 35%;
+}

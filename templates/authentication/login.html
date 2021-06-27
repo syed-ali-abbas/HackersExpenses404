@@ -1,6 +1,8 @@
 {% extends 'base_auth.html' %}
 {% load static %}
-
+{% block title %}
+        Login
+        {% endblock title %}
 {% block content %}
   <div class="row">
           <div class="col-md-4"></div>
@@ -26,6 +28,8 @@
                                             </div>
                                           <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn">
                                   </form>
+                                  <span>Don't have an Account?</span><a href="{% url 'register' %}">Register</a>
+                                  <span>Forgot Password</span><a href="{% url 'reset-password' %}">Reset It</a>
                           </div>
                   </div>
           </div>
